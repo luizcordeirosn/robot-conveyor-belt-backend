@@ -1,0 +1,47 @@
+[project]
+name = "gateway"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Luiz Neto",email = "luizcsneto@outlook.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+dependencies = [
+    "fastapi[standard] (>=0.118.0,<0.119.0)",
+    "requests (>=2.32.5,<3.0.0)",
+    "betterproto[compiler] (>=1.2.5,<2.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "pyserial (>=3.5,<4.0)",
+    "transitions (>=0.9.3,<0.10.0)",
+    "pytest (>=8.4.2,<9.0.0)",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "taskipy",
+]
+
+[tool.setuptools]
+package-dir = {"" = ""}
+
+[tool.setuptools.package-data]
+"*" = ["*.*"]
+
+[tool.pytest.ini_options]
+addopts = "-vv --cov=application --cov-report=term-missing -p no:warnings --cov-config=.coveragerc"
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.taskipy.tasks]
+test = 'pytest'
+post_test = 'coverage html'

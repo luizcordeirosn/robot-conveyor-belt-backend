@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+
+message LogRegister {
+    required int32 user_id = 1;
+    required string category = 2;
+    required string color = 3;
+    required string status = 4;
+}
+
+message LogProto {
+    required int32 id = 1;
+    required string category = 2;
+    required string color = 3;
+    required string status = 4;
+    required int32 user_id = 5;
+    required string created_at = 6;
+}
+message LogResponse {
+    required string detail = 1;
+}
+
+message LogList {
+    repeated LogProto data = 1;
+}

@@ -1,0 +1,19 @@
+[tool.poetry]
+package-mode = false
+name = "robot_api"
+version = "0.1.0"
+description = ""
+authors = ["Luiz Cordeiro da Silva Neto <luizcsneto@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.11"
+pyniryo = { version = "1.1.1", optional = true } # poetry run pip install pyniryo==1.1.1 --no-deps
+opencv-contrib-python = "^4.10.0.84"
+python-dotenv = "^1.0.1"
+fastapi = {extras = ["standard"], version = "^0.118.0"}
+pytest = "^8.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

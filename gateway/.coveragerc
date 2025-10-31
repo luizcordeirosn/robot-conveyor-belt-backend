@@ -1,0 +1,8 @@
+[run]
+omit =
+    application/entities/*
+    application/proto/*
+
+[report]
+show_missing = True
+skip_covered = True

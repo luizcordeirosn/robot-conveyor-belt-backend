@@ -1,0 +1,21 @@
+[project]
+name = "vision-api"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Luiz Neto",email = "luizcsneto@outlook.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10.11"
+dependencies = [
+    "opencv-python (>=4.12.0.88,<5.0.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "fastapi[standard] (>=0.118.0,<0.119.0)",
+    "ultralytics (>=8.3.205,<9.0.0)",
+    "pytest (>=8.4.2,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,13 @@
+# docker-compose.yml
+    version: '3.8'
+    services:
+      mysql:
+        image: mysql:8.0.31 # You can specify a different version
+        env_file:
+          - "./.env"
+        ports:
+          - "3306:3306" # Map host port 3306 to container port 3306
+        volumes:
+          - mysql_data:/var/lib/mysql # Persist data outside the container
+    volumes:
+      mysql_data:

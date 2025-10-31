@@ -1,0 +1,53 @@
+[tool.poetry]
+package-mode = false
+name = "database-api"
+version = "0.1.0"
+description = ""
+authors = ["Tamyres Bezerra da Silva <tamyressilvazz@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.11"
+python-dotenv = "^1.0.1"
+sqlalchemy = "^2.0.43"
+fastapi = {extras = ["standard"], version = "^0.118.0"}
+betterproto = {extras = ["compiler"], version = "^1.2.5"}
+alembic = "^1.16.5"
+mysqlclient = "^2.2.7"
+bcrypt = "^5.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+taskipy = "^1.14.1"
+faker = "^37.8.0"
+ruff = "^0.13.3"
+
+[tool.poetry.optional-dependencies]
+test = [
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "taskipy",
+]
+
+[tool.setuptools]
+package-dir = {"" = ""}
+
+[tool.setuptools.package-data]
+"*" = ["*.*"]
+
+[tool.pytest.ini_options]
+addopts = "-vv --cov=database --cov-report=term-missing -p no:warnings --cov-config=.coveragerc"
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.taskipy.tasks]
+test = "pytest"
+post_test = "coverage html"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

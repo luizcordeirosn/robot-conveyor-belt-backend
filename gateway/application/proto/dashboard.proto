@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+message DashboardRegister {
+    required int32 user_id = 1;
+    required string image = 2;
+    required int32 label = 3;
+    required float confidence = 4;
+}
+
+message DashboardProto {
+    required int32 id = 1;
+    required string image = 2;
+    required int32 label = 3;
+    required float confidence = 4;
+    required int32 user_id = 5;
+    required string created_at = 6;
+}
+
+message DashboardResponse {
+    required string detail = 1;
+}
+
+message DashboardList {
+    repeated DashboardProto data = 1;
+}

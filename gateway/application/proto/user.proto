@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+message LoggedUser{
+    required int32 id = 1;
+    required string name = 2;
+    required string username = 3;
+    
+}
+
+message PotentialUser {
+    required string username = 1;
+    required string password = 2;
+}
+
+message Register {
+    required string name = 1;
+    required string username = 2;
+    required string password = 3;
+}
+
+message RegisterResponse {
+    required string detail = 2;
+}

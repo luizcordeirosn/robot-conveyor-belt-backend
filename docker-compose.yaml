@@ -1,0 +1,66 @@
+services:
+  gateway:
+      build: gateway/.
+      container_name: gateway
+      ports:
+        - "8000:8000"
+      restart: unless-stopped
+      networks:
+        - gateway-net
+      privileged: true
+      volumes:
+        - /dev:/dev
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+        
+  vision-api:
+    build: vision_api/.
+    container_name: vision_api
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    networks:
+      - gateway-net
+    privileged: true
+    volumes:
+      - /dev/:/dev
+
+  robot-api:
+    build: robot_api/.
+    container_name: robot_api
+    restart: unless-stopped
+    network_mode: "host" 
+
+  database-api:
+    build: database_api/.
+    container_name: database_api
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    networks:
+      - gateway-net
+    depends_on:
+      mysql:
+        condition: service_healthy
+  mysql:
+        image: mysql:8.0.31
+        env_file:
+          - "database_api/.env"
+        ports:
+          - "3306:3306"
+        volumes:
+          - mysql_data:/var/lib/mysql
+        networks:
+          - gateway-net
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+volumes:
+  mysql_data:
+
+networks:
+  gateway-net:
+    driver: bridge
+
